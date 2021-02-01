@@ -1,3 +1,640 @@
-h1 {
-   color: goldenrod;
+/* some default settings */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,700");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #373841;
+  font-family: Poppins, sans-serif;
+  //font-size: 2rem;
+  color: whitesmoke;
+  min-height: 100vh;
+}
+
+.view {
+  padding: 10rem;
+  margin: 0 auto;
+}
+
+/* Some commonly used mixin functions*/
+@mixin header-two {
+  text-align: center;
+  color: map-get($colors, headerColor);
+}
+@mixin articleTextFontAlign {
+  text-align: justify;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+}
+@mixin imgHeightWidth {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+$colors: (
+  headerColor: rgb(231, 159, 86),
+  smallHeadTecFooter: #aaa9ad,
+);
+
+/********* Begin: Header block *********************/
+.header {
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto;
+  grid-template-areas: "headerImage headerNav";
+  align-items: center;
+  background-color: #202027;
+
+  margin-bottom: 2rem;
+  &__image {
+    grid-area: headerImage;
+    align-items: center;
+    img {
+      height: 10vh;
+      width: 50%;
+      border-radius: 50%;
+    }
+  }
+  &__nav {
+    grid-area: headerNav;
+    grid-column-start: 2;
+    justify-self: end;
+
+    &__list {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      column-gap: 1em;
+      grid-template-areas: "A A A A A .";
+      list-style-type: none;
+    }
+    &__nav__list__list1 {
+      grid-area: A;
+    }
+    a {
+      text-decoration: none;
+      font-size: 2rem;
+      color: whitesmoke;
+    }
+    a:hover {
+      color: map-get($colors, headerColor);
+    }
+  }
+
+  /* Header at media query, for screen size below 650px */
+  @media only screen and(max-width:650px) {
+    &__image img {
+      height: 45px;
+    }
+    width: 350px;
+    display: flex;
+    justify-content: space-evenly;
+
+    &__nav__list {
+      column-gap: 1.5rem;
+
+      a {
+        text-decoration: none;
+        font-size: 1.2rem;
+        color: rgba(245, 245, 245, 0.3);
+      }
+      a:hover {
+        color: map-get($colors, headerColor);
+      }
+    }
+  }
+}
+/* End: Header block ***/
+
+/******Begins: Main block *******/
+.mainHome {
+  display: grid;
+  grid-template-areas:
+    "svgArea"
+    "cardExperienceArea"
+    "tecStackArea"
+    "projectArea"
+    "formArea";
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  column-gap: 3rem;
+  row-gap: 2rem;
+
+  &__article1 {
+    grid-area: svgArea;
+    display: grid;
+    grid-template-areas: "aside article";
+    column-gap: 2rem;
+    &__article {
+      grid-area: article;
+      @include articleTextFontAlign;
+    }
+    &__aside {
+      grid-area: aside;
+      &__imgSvg {
+        height: 250px;
+        width: 300px;
+        //@include imgHeightWidth;
+      }
+    }
+    h2 {
+      text-align: center;
+      font-family: "Poppins", cursive;
+      color: map-get($colors, headerColor);
+    }
+
+    /* Image for mdeia size less than 750px */
+    @media only screen and(max-width:750px) {
+      &__aside__imgSvg {
+        height:350px;
+        width: 400px;
+        //@include imgHeightWidth;
+      }
+      &__article {
+        display: none;
+      }
+    }
+    /* End of media query */
+  }
+
+  &__article2 {
+    display: grid;
+    grid-template-areas: "card1 card2 card3";
+    grid-area: cardExperienceArea;
+    column-gap: 2rem;
+    &__section1 {
+      grid-area: card1;
+      @include articleTextFontAlign;
+    }
+    &__section2 {
+      grid-area: card2;
+      @include articleTextFontAlign;
+    }
+    &__section3 {
+      grid-area: card3;
+      @include articleTextFontAlign;
+    }
+    h2 {
+      font-family: "Poppins", sans-serif;
+      color: map-get($colors, headerColor);
+      strong {
+        font-size: 75%;
+        opacity: 0.75;
+      }
+    }
+    span {
+      font-size: 90%;
+      color: lightsalmon;
+    }
+    small {
+      color: rgb(201, 181, 181);
+    }
+  }
+
+  &__tec {
+    grid-area: tecStackArea;
+  }
+  &__tec__section {
+    display: grid;
+    background-color: #202027;
+    header {
+      column-gap: 2rem;
+    }
+    &__ul {
+      display: flex;
+      list-style-type: none;
+      column-gap: 3rem;
+      &__li1 {
+        flex: 1;
+        i {
+          color: map-get($colors, headerColor);
+        }
+        /* Media query for tec-section */
+        @media only screen and (max-width: 750px) {
+          a:hover {
+            font-size: 3rem;
+          }
+          i {
+            color: #aaa9ad;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    &__ul__li1 > a > i:hover {
+      position: absolute;
+      font-size: 12rem;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-family: "Poppins", sans-serif;
+      color: map-get($colors, headerColor);
+    }
+  }
+  &__project {
+    display: grid;
+    justify-items: inherit;
+    grid-template-areas:
+      "project1"
+      "project2"
+      "project3";
+    grid-area: projectArea;
+    &__project1 {
+      grid-area: project1;
+      @include articleTextFontAlign;
+      display: grid;
+      grid-template-areas: "image1 text";
+      column-gap: 3rem;
+      &__image1 {
+        grid-area: image1;
+      }
+      img {
+        @include imgHeightWidth;
+      }
+      &__article1 {
+        grid-area: text;
+      }
+    }
+    &__project2 {
+      grid-area: project2;
+      @include articleTextFontAlign;
+      display: grid;
+      grid-template-areas: "image2 text";
+      column-gap: 3rem;
+
+      &__image2 {
+        grid-area: image2;
+      }
+      img {
+        @include imgHeightWidth;
+      }
+      &__article2 {
+        grid-area: text;
+      }
+    }
+    &__project3 {
+      //mainHome__project__project1__image1
+      grid-area: project3;
+      @include articleTextFontAlign;
+      display: grid;
+      grid-template-areas: "image3 text";
+      column-gap: 3rem;
+
+      &__image3 {
+        grid-area: image3;
+      }
+      img {
+        @include imgHeightWidth;
+      }
+      &__article3 {
+        grid-area: text;
+      }
+    }
+    h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      color: map-get($colors, headerColor);
+      strong {
+        font-size: 75%;
+        opacity: 0.75;
+      }
+    }
+    /******** Projects block for media screen *********/
+
+    @media only screen and (max-width: 750px) {
+      img {
+        @include imgHeightWidth;
+      }
+      article {
+        display: none;
+      }
+    }
+  }
+  /* form styling */
+  &__form {
+    padding: 6rem;
+    margin: auto;
+    //margin-bottom:2rem;
+    max-width: 50vw;
+    max-height: 35vh;
+    grid-area: formArea;
+    border: 2px solid map-get($colors, headerColor);
+    background-color: #202027;
+    border-radius: 25% 0 25% 0;
+
+    &__formArea {
+      label {
+        font-size: 2rem;
+        color: map-get($colors, headerColor);
+      }
+      input {
+        height: 2rem;
+        font-size: 2rem;
+        width: 100%;
+      }
+      textarea {
+        height: 2rem;
+        font-size: 2rem;
+        width: 100%;
+      }
+    }
+    //mainHome__form__formArea__btn
+    &__formArea__btn {
+      height: inherit;
+      width: 50%;
+      font-size: 1.7rem;
+      margin-left: 50%;
+
+      font-family: "Poppins", sans-serif;
+      background-color: map-get($colors, headerColor);
+      color: white;
+    }
+  }
+  &_tecStack {
+    display: grid;
+  }
+  &__btn {
+    padding: 2px;
+    margin-top: 1rem;
+    font-size: 3rem;
+    background-color: map-get($colors, headerColor);
+    color: white;
+    &:hover {
+      transform: rotateY(15deg);
+      border-radius: 25% 0 25% 0;
+    }
+  }
+}
+/* footer styling */
+/*.foot {
+  width: inherit;
+  display: grid;
+  position: absolute;
+  margin-top: 2rem;
+  grid-template-areas:
+    "quote copyright ."
+    ". . media";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+
+  background-color: #202027;
+  color: map-get($colors, headerColor);
+  &__quote {
+    grid-area: quote;
+  }
+  &__copyright {
+    grid-area: copyright;
+  }
+  &__media {
+    grid-area: media;
+
+    &__list {
+      display: grid;
+      grid-template-areas: "list1 list1 list1 list1";
+      list-style-type: none;
+      grid-template-columns: auto;
+      justify-content: end;
+      column-gap: 1rem;
+    }
+    &__list__list1 {
+      grid-area: list1;
+    }
+  }
+}
+*/
+.foot {
+  display: flex;
+  background-color: #202027;
+  color: map-get($colors, headerColor);
+  
+  justify-content: space-evenly;
+  
+  &__quote {
+    font-size: 1rem;
+    
+  }
+  &__copyright {
+    font-size: 1rem;
+  }
+  &__media {
+   
+    &__list{
+      display:flex;
+      list-style-type: none;
+      li {
+      margin-left: .5rem;
+      padding:.5rem;
+      }
+    }
+ 
+    &__list__list1 {
+      flex-direction: row;    
+      justify-content: space-between;
+   
+    }
+    
+  }
+}
+
+
+/* svg animate */
+.container {
+  h1 {
+    color: map-get($colors, headerColor);
+  }
+}
+/* Hat Move */
+#hat {
+  animation: hat 5s infinite linear;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes hat {
+  10% {
+    transform: rotateZ(2deg);
+  }
+  30% {
+    transform: rotateZ(-1deg);
+  }
+}
+/* Indigo Flower Move */
+#flower-indigo {
+  animation: flowerIndigo 1s infinite linear;
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+@keyframes flowerIndigo {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(4deg);
+  }
+  50% {
+    transform: rotateZ(8deg);
+  }
+  75% {
+    transform: rotateZ(5deg);
+  }
+  100% {
+    transform: rotateZ(-3deg);
+  }
+}
+/* Green Flower Move */
+#flower-green {
+  animation: flowerGreen 1s infinite linear;
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+@keyframes flowerGreen {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(-4deg);
+  }
+  50% {
+    transform: rotateZ(-8deg);
+  }
+  75% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: rotateZ(3deg);
+  }
+}
+/* shoe moves */
+#shoe {
+  animation: leg 1s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes leg {
+  10% {
+    transform: rotate(-10deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+}
+/* Right hand move*/
+#right-hand {
+  animation: rightHand 0.5s infinite linear;
+  transform-origin: left;
+  transform-box: fill-box;
+}
+@keyframes rightHand {
+  0% {
+    transform: rotateZ(1deg);
+  }
+  50% {
+    transform: rotateZ(3deg);
+  }
+  100% {
+    transform: rotateZ(1deg);
+  }
+}
+/* Left hand move*/
+#left-hand {
+  animation: leftHand 0.9s infinite linear;
+  transform-origin: left;
+  transform-box: fill-box;
+}
+@keyframes leftHand {
+  0% {
+    transform: rotateZ(1deg);
+  }
+  50% {
+    transform: rotateZ(2deg);
+  }
+  100% {
+    transform: rotateZ(1deg);
+  }
+}
+/* Laptop Screen move*/
+#laptop-screen {
+  animation: laptopScreen 0.9s infinite linear;
+  transform-origin: left;
+  transform-box: fill-box;
+}
+@keyframes laptopScreen {
+  20% {
+    transform: rotateZ(1deg);
+  }
+  50% {
+    transform: rotateZ(2deg);
+  }
+}
+/* fingers right move*/
+#fingers-right {
+  animation: rightFingers 1s infinite linear;
+  transform-origin: left;
+  transform-box: fill-box;
+}
+@keyframes rightFingers {
+  0% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: rotateY(-3deg);
+  }
+  75% {
+    transform: rotateY(300deg);
+  }
+}
+/* Animating Face */
+#face {
+  animation: face 0.5s infinite linear;
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+@keyframes face {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotateY(5deg);
+  }
+  50% {
+    transform: rotateY(10deg);
+  }
+  75% {
+    transform: rotateY(-10deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+/* Animate Mouth */
+#mouth {
+  animation: mouth 1s linear infinite;
+
+  transform-origin: right;
+  transform-box: fill-box;
+}
+@keyframes mouth {
+  10% {
+    transform: rotateZ(5deg);
+  }
+  50% {
+    transform: rotateZ(10deg);
+  }
+  100% {
+    transform: rotateZ(-5deg);
+  }
 }

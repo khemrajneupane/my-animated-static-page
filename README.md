@@ -1,2 +1,2 @@
-# my-animated-static-page
-https://my-animated-page.netlify.app/
+## Welcome to CSS and SASS assignment.
+please follow the instructions which you can find in index.html
