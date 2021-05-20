@@ -7,6 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../style.css" type="text/css">
     <title>portfolio home</title>
+    <script type="application/javascript" src="https://ced.sascdn.com/tag/1/smart.js" async></script>
+<script type="text/javascript" src="https://tagmanager.smartadserver.com/1/1234/smart.prebid.js" async></script>
+<script type="application/javascript">
+    var sas = sas || {};
+    sas.cmd = sas.cmd || [];
+        sas.cmd.push(function() {
+        sas.setup({ networkid: 1, domain: "https://ww1.smartadserver.com", async: true, renderMode: 2 });
+    });
+    sas.cmd.push(function() {
+        sas.call("onecall", {
+            siteId: 174967,
+            pageId: 853025,
+            formats:  [
+                 { id: 4923, tagId: "Banner" }
+                ,{ id: 15652, tagId: "Interstitial" }
+                ,{ id: 6013, tagId: "Megaban" }
+            ],
+            target: ''
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -29,6 +50,7 @@
 
             <!--aside with image and article-->
             <div class="mainHome__article1" aria-labelledby="aside-article">
+                <div id="Megaban"></div>
                 <article class="mainHome__article1__article">
                     <header>
                         <h2 tabindex="0">About Myself</h2>
