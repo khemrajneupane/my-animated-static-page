@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/khemrajneupane/fast-track-5-animation/issues"
   },
-  "homepage": "https://github.com/khemrajneupane/fast-track-5-animation#readme"
+  "homepage": "https://github.com/khemrajneupane/fast-track-5-animation#readme",
+  "dependencies": {
+    "node-sass": "^6.0.0"
+  }
 }
